@@ -1,0 +1,13 @@
+#Receitas JF
+setwd("C:/Dados")
+library(readxl)
+library(tidyr)
+library(dplyr)
+df <- read_xls("recursos.xls", skip = 3)
+View(df)
+df <- df%>%
+  drop_na(`VALOR
+LIBERADO`)%>%
+  fill(`ORIGEM DO RECURSO`, .direction="down")
+df <- df[df$`ORIGEM DO RECURSO`!= "ORIGEM DO RECURSO", ]
+df <- df[df$`ORIGEM DO RECURSO`!= "TOTAL DA UNIDADE GESTORA:", ]
